@@ -42,3 +42,7 @@ The firmware of both devices can be flashed with the Arduino IDE software, selec
 - Power consumption of the final build is .05 A at 5 V
 - If the board ever gets **bricked** [my guide](https://github.com/hexwell/notes-public/blob/master/en/electronics/resources/pro_micro_brick.md) might be of use.
 - **IMPORTANT** TODO: TVS diodes or some sort of protection against voltages outside of 0-5 V should be placed on the sensor output, as a short circuit could cause a spike that destroys the ADC of the Arduino
+
+## Questioning the whole thing
+
+Since measuring power using just a current transformer is probably not really precise, other possible options were reading the power measurement of the energy company's power meter directly via it's IR port. That would require a lot of work tho, since the protocol needs to be reverse engineered. Irony of sorts, my italian energy company's meter is named OpenMeter.
