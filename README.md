@@ -38,10 +38,12 @@ The firmware of both devices can be flashed with the Arduino IDE software, selec
 
 ## Notes
 
+- For the final project enclosure, I made a USB B passthrough to the Arduino Micro USB since the former is way more physically robust
+- The current transformer/sensor is connected with a 3.3 mm jack breakout board in order to be easily detached from the device using it's original connector.
 - A _true_ RMS reading of the sensor is crucial in order to get the real power value. The RMS reading is because of the nature of AC currents. The _true_ RMS is necessary because of the different current waveform of various types of loads (resistive, inductive, capacitive, etc.)
 - Power consumption of the final build is .05 A at 5 V
 - If the board ever gets **bricked** [my guide](https://github.com/hexwell/notes-public/blob/master/en/electronics/resources/pro_micro_brick.md) might be of use.
-- **IMPORTANT** TODO: TVS diodes or some sort of protection against voltages outside of 0-5 V should be placed on the sensor output, as a short circuit could cause a spike that destroys the ADC of the Arduino
+- **IMPORTANT** TODO: TVS diodes or some sort of protection against voltages outside of 0-5 V should be placed on the sensor output, as a short circuit could cause a spike that destroys the ADC of the Arduino (See explanation above). Alternatively I could use the other current tranformer with integrated protection and add the resistor. It should not be a difficult modification.
 
 ## Questioning the whole thing
 
