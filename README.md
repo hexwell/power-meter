@@ -12,8 +12,8 @@ It consist of two devices:
 ### Explanation
 
 - An SCT-013-000V current transformer with integrated burden resistor is used, because I didn't have a precise enough one. The other model (SCT-013-000) tho had integrated TVS diodes for protection instead, that now I need to integrate externally. (See note)
-- The voltage divider DC-biases the current transformer/sensor in order to move the current waveform in the safe and measurable range of the Arduino ADC. The capacitor to ground is for stability of the voltage
-- A 10 μF capacitor is placed between the power rails of the Arduino for ADC stability
+- The voltage divider DC-biases the current transformer/sensor in order to move the current waveform in the safe and measurable range of the Arduino ADC (as in the negative half cycle the voltage across the sensor is negative). The capacitor to ground is for stability of the bias voltage
+- A 10 μF capacitor is placed between the power rails of the Arduino for ADC stability as it need a stable supply to make precise measurements
 - A shielded cable is used to carry the signal from the the sensor to the Arduino, although it probably is not needed as the frequency is only 50 Hz
 - A NRF24L01+PA+LNA module (with RFAXIS RFX2401C chip) is used for better range and for the SMA connector, allowing for an external (outside of project enclosure) and orientable antenna
 - A 3.3 V regulator module with some capacitors on board off of Amazon is used to supply the transceiver. It saves space and does the job fine
@@ -38,7 +38,7 @@ The firmware of both devices can be flashed with the Arduino IDE software, selec
 
 ## Notes
 
-- For the final project enclosure, I made a USB B passthrough to the Arduino Micro USB since the former is way more physically robust
+- For the final project enclosure, I made a USB B to Arduino Micro USB passthrough since the former is more physically robust
 - The current transformer/sensor is connected with a 3.3 mm jack breakout board in order to be easily detached from the device using it's original connector.
 - A _true_ RMS reading of the sensor is crucial in order to get the real power value. The RMS reading is because of the nature of AC currents. The _true_ RMS is necessary because of the different current waveform of various types of loads (resistive, inductive, capacitive, etc.)
 - Power consumption of the final build is .05 A at 5 V
