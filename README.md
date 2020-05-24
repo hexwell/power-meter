@@ -7,7 +7,7 @@ It consist of two devices:
 
 ## Meter circuit
 
-![tx_circuit]()
+TODO
 
 ### Explanation
 
@@ -23,7 +23,7 @@ It consist of two devices:
 
 ## Alarm circuit
 
-![rx_circuit]()
+TODO
 
 ## Firmware
 
@@ -36,6 +36,8 @@ The firmware of both devices can be flashed with the Arduino IDE software, selec
 
 ## Meter pictures
 
+TODO
+
 ## Notes
 
 - For the final project enclosure, I made a USB B to Arduino Micro USB passthrough since the former is more physically robust
@@ -44,6 +46,10 @@ The firmware of both devices can be flashed with the Arduino IDE software, selec
 - Power consumption of the final build is .05 A at 5 V
 - If the board ever gets **bricked** [my guide](https://github.com/hexwell/notes-public/blob/master/en/electronics/resources/pro_micro_brick.md) might be of use.
 - **IMPORTANT** TODO: TVS diodes or some sort of protection against voltages outside of 0-5 V should be placed on the sensor output, as a short circuit could cause a spike that destroys the ADC of the Arduino (See explanation above). Alternatively I could use the other current tranformer with integrated protection and add the resistor. It should not be a difficult modification.
+
+## Early prototype
+
+TODO
 
 ## Questioning the whole thing
 
