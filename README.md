@@ -55,22 +55,22 @@ TODO
 
 - Theoretical resolution limits of SCT-013-000V transformer:
 
-                  rms mains voltage = 230
+                    rms mains voltage = 230
 
-                  transformer input = 100 A
-                 transformer output = 1 V
+                    transformer input = 100 A
+                   transformer output = 1 V
 
-                                vcc = 4.683 V
-                      adc divisions = 1024
+                                  vcc = 4.683 V
+                        adc divisions = 1024
 
-                 volts per division = vcc / adc divisions
-                                    = 0.004573
-    divisions per transformer_range = transformer output / volts per division
-                                    = 218
-                  amps per division = transformer input / divisions per transformer range
-                                    = 0.4587
-                         resolution = amps per division * rms_mains_voltage
-                                    = 105.5010 W
+                   volts per division = vcc / adc divisions
+                                      = 0.004573
+      divisions per transformer_range = transformer output / volts per division
+                                      = 218
+                    amps per division = transformer input / divisions per transformer range
+                                      = 0.4587
+                           resolution = amps per division * rms_mains_voltage
+                                      = 105.5010 W
 
     This issue can be solved with a transformer with a lower input rating. Before buying this tho transients suppression is needed.
 
