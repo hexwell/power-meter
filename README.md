@@ -45,6 +45,35 @@ TODO
 - Power consumption of the final build is .05 A at 5 V
 - If the board ever gets **bricked** [my guide](https://github.com/hexwell/notes-public/blob/master/en/electronics/resources/pro_micro_brick.md) might be of use.
 
+## 11 June 2020
+
+- OpenMeter update rate: 2s
+
+- Pipe problem
+
+    The NRF24L01 does not receive on pipe 0, but it should according to the documentation. Tho there is evidence that the documentation is not good (the signature for the function does not match the code). Solving this requires reading through a lot of the code of the library and the NRF24L01 datasheet. Probably not going to solve since using pipe 1 is not a big deal. If I have some spare time I might investigate the issue for personal knowledge.
+
+- Theoretical resolution limits of SCT-013-000V transformer:
+
+                  rms mains voltage = 230
+
+                  transformer input = 100 A
+                 transformer output = 1 V
+
+                                vcc = 4.683 V
+                      adc divisions = 1024
+
+                 volts per division = vcc / adc divisions
+                                    = 0.004573
+    divisions per transformer_range = transformer output / volts per division
+                                    = 218
+                  amps per division = transformer input / divisions per transformer range
+                                    = 0.4587
+                         resolution = amps per division * rms_mains_voltage
+                                    = 105.5010 W
+
+    This issue can be solved with a transformer with a lower input rating. Before buying this tho transients suppression is needed.
+
 ### Questioning the whole thing
 
 Since measuring power using just a current transformer is probably not really precise, other possible options were reading the power measurement of the energy company's power meter directly via it's IR port. That would require a lot of work tho, since the protocol needs to be reverse engineered. Irony of sorts, my italian energy company's meter is named OpenMeter.
