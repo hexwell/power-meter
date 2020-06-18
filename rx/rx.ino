@@ -1,18 +1,34 @@
 #include "RF24.h"
 #include <LiquidCrystal_I2C.h>
 
-RF24 radio(9, 10); // CE, CSN
-const uint8_t pipe = 1;
-const uint8_t address[] = {0, 0, 0, 0, 0};
+#include "printf.h"
 
-LiquidCrystal_I2C lcd(0x27,20,4); // set the LCD address to 0x27 for a 16 chars and 2 line display
+RF24 radio(9, 10); // CE, CSN
+
+typedef uint16_t payload;
+
+LiquidCrystal_I2C lcd(0x27, 20, 4); // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 void setup() {
   Serial.begin(115200);
 
   radio.begin();
-  radio.openReadingPipe(pipe, address);
+
+  // Todo check these
+  radio.setPayloadSize(sizeof(payload));
+  radio.disableDynamicPayloads();
+  radio.setAutoAck(false);
+  radio.setPALevel(RF24_PA_MIN);
+  radio.setDataRate(RF24_250KBPS);
+
+  // Todo set to zero after https://github.com/nRF24/RF24/issues/496 is closed
+  const uint8_t address[] = {10, 10, 10, 10, 10};
+  radio.openReadingPipe(0, address);
   radio.startListening();
+
+  delay(5000);
+  printf_begin();
+  radio.printDetails();
 
   lcd.init();
   lcd.backlight();
@@ -26,9 +42,9 @@ bool alarm = false;
 
 void loop() {
   if (radio.available()) {
-    uint16_t power;
+    payload power;
 
-    radio.read(&power, 2);
+    radio.read(&power, sizeof(payload));
 
     Serial.println(power);
 

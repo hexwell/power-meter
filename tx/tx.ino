@@ -25,11 +25,25 @@ const double DIVISIONS_PER_TRANSFORMER_RANGE = TRANSFORMER_OUTPUT / VOLTS_PER_DI
 const double AMPS_PER_DIVISION = TRANSFORMER_INPUT / DIVISIONS_PER_TRANSFORMER_RANGE; // A/d
 
 RF24 radio(5, 10); // CE, CSN
-const uint8_t address[] = {0, 0, 0, 0, 0};
 
-void setup() {  
+typedef uint16_t payload;
+
+void setup() {
   radio.begin();
+
+  // Todo check these
+  radio.setRetries(0, 0);
+  radio.setPayloadSize(sizeof(payload));
+  radio.disableDynamicPayloads();
+  radio.setAutoAck(false);
+  radio.setPALevel(RF24_PA_MAX);
+  radio.setDataRate(RF24_250KBPS);
+
+  // Todo set to zero after https://github.com/nRF24/RF24/issues/496 is closed
+  // Todo update calibration.ino as well!
+  const uint8_t address[] = {10, 10, 10, 10, 10};
   radio.openWritingPipe(address);
+  radio.stopListening();
 }
 
 void loop() {
@@ -48,7 +62,7 @@ void loop() {
     }
 
   double rms_current = sqrt(rms_summation / SAMPLES);
-  uint16_t power = abs(rms_current * AMPS_PER_DIVISION * RMS_MAINS_VOLTAGE - POWER_SUPPLY_NOISE_CORRECTION);
+  payload power = abs(rms_current * AMPS_PER_DIVISION * RMS_MAINS_VOLTAGE - POWER_SUPPLY_NOISE_CORRECTION);
 
-  radio.write(&power, 2);
+  radio.write(&power, sizeof(payload));
 }
