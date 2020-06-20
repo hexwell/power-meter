@@ -31,7 +31,7 @@ typedef uint16_t payload;
 void setup() {
   radio.begin();
 
-  // Todo check these
+  // TODO check these, update calibration.ino as well!
   radio.setRetries(0, 0);
   radio.setPayloadSize(sizeof(payload));
   radio.disableDynamicPayloads();
@@ -39,11 +39,9 @@ void setup() {
   radio.setPALevel(RF24_PA_MAX);
   radio.setDataRate(RF24_250KBPS);
 
-  // Todo set to zero after https://github.com/nRF24/RF24/issues/496 is closed
-  // Todo update calibration.ino as well!
-  const uint8_t address[] = {10, 10, 10, 10, 10};
+  const uint8_t address[] = {0, 0, 0, 0, 0};
   radio.openWritingPipe(address);
-  radio.stopListening();
+  radio.stopListening(); // TODO Check if needed
 }
 
 void loop() {

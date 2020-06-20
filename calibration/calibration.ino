@@ -12,11 +12,23 @@ const unsigned long SAMPLING_PERIOD = 1000000 / SAMPLING_RATE; // μs
 const unsigned long SAMPLES = 2 * SAMPLING_RATE;
 
 RF24 radio(5, 10); // CE, CSN
-const uint8_t address[] = {0, 0, 0, 0, 0};
 
-void setup() {  
+typedef uint16_t payload;
+
+void setup() {
   radio.begin();
+
+  // TODO check these
+  radio.setRetries(0, 0);
+  radio.setPayloadSize(sizeof(payload));
+  radio.disableDynamicPayloads();
+  radio.setAutoAck(false);
+  radio.setPALevel(RF24_PA_MAX);
+  radio.setDataRate(RF24_250KBPS);
+
+  const uint8_t address[] = {0, 0, 0, 0, 0};
   radio.openWritingPipe(address);
+  radio.stopListening(); // TODO Check if needed
 }
 
 void loop() {
