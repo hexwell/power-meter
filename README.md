@@ -51,7 +51,7 @@ TODO
 
 - Pipe problem
 
-    The NRF24L01 does not receive on pipe 0, but it should according to the documentation. Tho there is evidence that the documentation is not good (the signature for the function does not match the code). Solving this requires reading through a lot of the code of the library and the NRF24L01 datasheet. Probably not going to solve since using pipe 1 is not a big deal. If I have some spare time I might investigate the issue for personal knowledge.
+    The NRF24L01 does not receive on pipe 0 when the address' first byte is 0, this is a [known issue](https://github.com/nRF24/RF24/issues/496) and the code can be update once it is solved.
 
 - Theoretical resolution limits of SCT-013-000V transformer:
 
