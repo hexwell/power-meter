@@ -47,6 +47,8 @@ TODO
 
 ## 11 June 2020
 
+- It might be nice to keep in this readme some pictures from the prototype when I design the PCB and update it.
+
 - OpenMeter update rate: 2s
 
 - Pipe problem
