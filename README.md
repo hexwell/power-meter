@@ -44,7 +44,7 @@ The circuit of both devices is pretty trivial. For both devices it's just an Ard
 
 - A _true_ RMS reading of the sensor is crucial in order to get the real power value. The RMS reading is because of the nature of AC currents. The _true_ RMS is necessary because of the different current waveform of various types of loads (resistive, inductive, capacitive, etc.)
 - Power consumption of the final build is .05 A at 5 V
-- If the board ever gets **bricked** [my guide](https://github.com/hexwell/notes-public/blob/master/en/electronics/resources/pro_micro_brick.md) might be of use.
+- If the board ever gets **bricked**, [my guide](https://github.com/hexwell/notes-public/blob/master/en/electronics/pro_micro_brick.md) might be of use.
 
 ## 11 June 2020
 
