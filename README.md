@@ -81,4 +81,4 @@ The circuit of both devices is pretty trivial. For both devices it's just an Ard
 
 ### Questioning the whole thing
 
-Since measuring power using just a current transformer is probably not really precise, other possible options were reading the power measurement of the energy company's power meter directly via it's IR port. That would require a lot of work tho, since the protocol needs to be reverse engineered. Irony of sorts, my italian energy company's meter is named OpenMeter.
+Since measuring power using just a current transformer is probably not really accurate, other possible options were reading the power measurement of the energy company's power meter directly via it's IR port. That would require a lot of work tho, since the protocol needs to be reverse engineered. Irony of sorts, my italian energy company's meter is named OpenMeter.
