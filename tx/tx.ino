@@ -7,7 +7,7 @@
 #define TRANSFORMER_OUTPUT 1 // V
 
 #define SENSOR_PIN A0
-#define SENSOR_CALIBRATION 510.3 // RMS analogRead(SENSOR_PORT) with no load, use "calibration" sketch to measure this value
+#define SENSOR_CALIBRATION 510.3 // RMS analogRead(SENSOR_PIN) with no load, use "calibration" sketch to measure this value
 
 #define VCC 4.683 // V
 #define ADC_DIVISIONS 1024 // d
