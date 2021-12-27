@@ -31,7 +31,6 @@ typedef uint16_t payload;
 void setup() {
   radio.begin();
 
-  // TODO check these, update calibration.ino as well!
   radio.setRetries(0, 0);
   radio.setPayloadSize(sizeof(payload));
   radio.disableDynamicPayloads();
@@ -39,9 +38,19 @@ void setup() {
   radio.setPALevel(RF24_PA_MAX);
   radio.setDataRate(RF24_250KBPS);
 
-  const uint8_t address[] = {0, 0, 0, 0, 0};
-  radio.openWritingPipe(address);
+  // The address was chosen randomly (to avoid collisions with other devices)
+  // avoiding nibbles that mess with the preable detection circuitry of the nRF24L01,
+  // as suggested by this article:
+  // http://maniacalbits.blogspot.com/2013/04/rf24-addressing-nrf24l01-radios-require.html
+  // linked by TMRh20 here:
+  // https://github.com/nRF24/RF24/issues/496#issuecomment-671169580
+
+  // The nibbles to avoid are: 0x0, 0x1, 0x2, 0x5, 0xA, 0xF
+
   radio.stopListening(); // TODO Check if needed
+  
+  const uint8_t address[] = {0xCD, 0xE6, 0x36, 0xE7, 0xCD};
+  radio.openWritingPipe(address);
 }
 
 void loop() {

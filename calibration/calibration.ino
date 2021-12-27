@@ -18,7 +18,6 @@ typedef uint16_t payload;
 void setup() {
   radio.begin();
 
-  // TODO check these
   radio.setRetries(0, 0);
   radio.setPayloadSize(sizeof(payload));
   radio.disableDynamicPayloads();
@@ -26,9 +25,10 @@ void setup() {
   radio.setPALevel(RF24_PA_MAX);
   radio.setDataRate(RF24_250KBPS);
 
-  const uint8_t address[] = {0, 0, 0, 0, 0};
-  radio.openWritingPipe(address);
   radio.stopListening(); // TODO Check if needed
+
+  const uint8_t address[] = {0xCD, 0xE6, 0x36, 0xE7, 0xCD};
+  radio.openWritingPipe(address);
 }
 
 void loop() {
@@ -47,7 +47,7 @@ void loop() {
     }
 
   double mean_value = summation / SAMPLES * PRECISION;
-  uint16_t int_mean_value = mean_value;
+  payload int_mean_value = mean_value;
 
-  radio.write(&int_mean_value, 2);
+  radio.write(&int_mean_value, sizeof(payload));
 }

@@ -14,16 +14,15 @@ void setup() {
 
   radio.begin();
 
-  // TODO check these
   radio.setPayloadSize(sizeof(payload));
   radio.disableDynamicPayloads();
   radio.setAutoAck(false);
   radio.setPALevel(RF24_PA_MIN);
   radio.setDataRate(RF24_250KBPS);
 
-  const uint8_t address[] = {0, 0, 0, 0, 0};
-  // TODO set pipe to 0 after https://github.com/nRF24/RF24/issues/496 is fixed
-  radio.openReadingPipe(1, address);
+  const uint8_t address[] = {0xCD, 0xE6, 0x36, 0xE7, 0xCD};
+  radio.openReadingPipe(0, address);
+  
   radio.startListening(); // TODO Check if needed
 
   delay(5000);
