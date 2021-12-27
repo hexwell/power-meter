@@ -1,7 +1,8 @@
 #include "RF24.h"
 
-#define RMS_MAINS_VOLTAGE 230 // V
-#define MAINS_FREQUENCY 50 // Hz
+// Mains Characteristics
+#define RMS_GRID_VOLTAGE 230 // V
+#define GRID_FREQUENCY 50 // Hz
 
 #define TRANSFORMER_INPUT 100 // A
 #define TRANSFORMER_OUTPUT 1 // V
@@ -16,7 +17,7 @@
 #define POWER_SUPPLY_NOISE_CORRECTION 150 // W
 
 // Measurement time (2s @ 50 Hz mains)
-const unsigned long SAMPLING_RATE = 5 * MAINS_FREQUENCY; // Sa/s
+const unsigned long SAMPLING_RATE = 5 * GRID_FREQUENCY; // Sa/s
 const unsigned long SAMPLING_PERIOD = 1000000 / SAMPLING_RATE; // μs
 const unsigned long SAMPLES = 2 * SAMPLING_RATE;
 
@@ -69,7 +70,7 @@ void loop() {
     }
 
   double rms_current = sqrt(rms_summation / SAMPLES);
-  payload power = abs(rms_current * AMPS_PER_DIVISION * RMS_MAINS_VOLTAGE - POWER_SUPPLY_NOISE_CORRECTION);
+  payload power = abs(rms_current * AMPS_PER_DIVISION * RMS_GRID_VOLTAGE - POWER_SUPPLY_NOISE_CORRECTION);
 
   radio.write(&power, sizeof(payload));
 }

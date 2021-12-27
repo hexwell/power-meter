@@ -1,13 +1,14 @@
 #include "RF24.h"
 
-#define MAINS_FREQUENCY 50 // Hz
+// Mains Characteristics
+#define GRID_FREQUENCY 50 // Hz
 
 #define SENSOR_PIN A0
 
 #define PRECISION 100
 
 // Measurement time (2s @ 50 Hz mains)
-const unsigned long SAMPLING_RATE = 5 * MAINS_FREQUENCY; // Sa/s
+const unsigned long SAMPLING_RATE = 5 * GRID_FREQUENCY; // Sa/s
 const unsigned long SAMPLING_PERIOD = 1000000 / SAMPLING_RATE; // μs
 const unsigned long SAMPLES = 2 * SAMPLING_RATE;
 

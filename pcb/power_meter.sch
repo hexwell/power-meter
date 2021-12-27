@@ -681,7 +681,7 @@ Wire Notes Line
 Wire Notes Line
 	7150 4650 7150 2750
 Text Notes 3150 2750 0    50   ~ 0
-Capacitors of decreasing values are used to decouple noise of increasing frequency.\nThis technique is used throughout all of the schematic\n\nCurrent requirements: 500 mA\n\nCurrent sensing: 0.02 mA\nMCU: 27 mA\nRF:\n13.5 mA\n350 mA
+Capacitors of decreasing values are used to decouple noise of increasing frequency.\nThis technique is used throughout all of the schematic\n\nCurrent requirements: 500 mA\n\nCurrent sensing: 0.02 mA\nMCU: 27 mA\nRF:\n  nRF24L01+: 13.5 mA\n  RFX2401C: 350 mA
 Wire Notes Line
 	600  7650 600  3450
 Wire Notes Line
